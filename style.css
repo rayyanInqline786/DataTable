@@ -1,0 +1,15 @@
+body{
+    padding: 20px;
+}
+div.dataTables_wrapper {
+    margin-bottom: 3em;
+    /* width: 800px; */
+    /* margin: 0 auto; */
+}
+.strike{
+    text-decoration: line-through;
+}
+.strike1{
+    text-decoration: line-through;
+}
+th, td { white-space: nowrap; }
