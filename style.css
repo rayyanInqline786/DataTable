@@ -13,3 +13,20 @@ div.dataTables_wrapper {
     text-decoration: line-through;
 }
 th, td { white-space: nowrap; }
+a.buttons-collection {
+    margin-left: 1em;
+}
+.filter{
+margin-bottom: 30px !important;
+display: none;
+}
+@media (max-width:1200px){
+    .filter{
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    #btnGo,#btnGo1{
+        margin-top: 10px;
+    }
+}
