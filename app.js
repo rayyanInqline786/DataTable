@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  function filterStart(){
+  function filter(){
   $.fn.dataTable.ext.search.push(
     function (settings, data, dataIndex) {
 
@@ -21,7 +21,6 @@ $(document).ready(function () {
 
           if (col.type == "startDate") {
             var cDate = moment(data[i]);
-
             if (cDate.isValid()) {
               if (max !== null && max.isBefore(cDate)) {
                 valid = false;
@@ -61,7 +60,6 @@ $(document).ready(function () {
   
             if (col.type == "endDate") {
               var cDate = moment(data[i]);
-  
               if (cDate.isValid()) {
                 if (max !== null && max.isBefore(cDate)) {
                   valid = false;
@@ -79,68 +77,57 @@ $(document).ready(function () {
         return valid;
       });
     }
-  $.fn.dataTable.ext.search.push(
-    function (settings, data, dataIndex) {
+  // function filter1(){
+  // $.fn.dataTable.ext.search.push(
+  //   function (settings, data, dataIndex) {
 
 
-      var valid = true;
-      var min = moment($("#txtMin1").val());
-      if (!min.isValid()) { min = null; }
+  //     var valid = true;
+  //     var min = moment($("#txtMin1").val());
+  //     if (!min.isValid()) { min = null; }
 
-      var max = moment($("#txtMax1").val());
-      if (!max.isValid()) { max = null; }
+  //     var max = moment($("#txtMax1").val());
+  //     if (!max.isValid()) { max = null; }
 
-      if (min === null && max === null) {
-        // no filter applied or no date columns
-        valid = true;
-      }
-      else {
+  //     if (min === null && max === null) {
+  //       // no filter applied or no date columns
+  //       valid = true;
+  //     }
+  //     else {
 
-        $.each(settings.aoColumns, function (i, col) {
+  //       $.each(settings.aoColumns, function (i, col) {
 
-          if (col.type == "date") {
-            var cDate = moment(data[i]);
+  //         if (col.type == "startDate" || col.type == "endDate") {7
+  //           var cDate = moment(data[i]);
 
-            if (cDate.isValid()) {
-              if (max !== null && max.isBefore(cDate)) {
-                valid = false;
-              }
-              if (min !== null && cDate.isBefore(min)) {
-                valid = false;
-              }
-            }
-            else {
-              valid = false;
-            }
-          }
-        });
-      }
-      return valid;
-    });
-  // var asyncData;
-  // getdata();
-  //       var dataSet =   function getdata(){
-  //             const getPeople = async () => {
-  //              const data = await fetch('data3.json', {
-  //                method: 'GET',
-  //                 });
-  //                 const  jsondata = await data.json();
-  //                 console.log(jsondata)
-  //                 asyncData=jsondata.data;
-  //              console.log(asyncData)
-  //              return jsondata;
-  //              };
-  //              getPeople();
+  //           if (cDate.isValid()) {
+  //             if (max !== null && max.isBefore(cDate)) {
+  //               valid = false;
   //             }
-
+  //             if (min !== null && cDate.isBefore(min)) {
+  //               valid = false;
+  //             }
+  //           }
+  //           else {
+  //             valid = false;
+  //           }
+  //         }
+  //       });
+  //     }
+  //     return valid;
+  //   });
+  // }
   $("select").on("click", "#start", function () {
-    $(".filter").slideToggle()
-    filterStart();
+    $(".filter").show()
+    filter();
   })
   $("select").on("click", "#end", function () {
-    $(".filter").slideToggle()
+    $(".filter").show()
     filterEnd();
   })
+  $("select").on("click", "#def", function () {
+    $(".filter").hide()
+   })
   $("#btnGo").click(function () {
     $('#example').DataTable().draw();
   });
@@ -273,7 +260,7 @@ $(document).ready(function () {
   function initialiseTable1() {
     table1 = $("#example1").DataTable({
       "ajax": {
-        "url": "data2.json",
+        "url": "data3.json",
       },
       "deferRender": true,
       "iDisplayLength": 10,
@@ -331,7 +318,8 @@ $(document).ready(function () {
         { title: "age", data: "age" },
         { title: "gender", data: "gender" },
         { title: "company", data: "company" },
-        { title: "date", data: "startDate", type: "date" },
+        { title: "StartDate", data: "startDate", type: "startDate" },
+        { title: "EndDate", data: "endDate", type: "endDate" },
         { title: "email", data: "email" },
         { title: "phone", data: "phone" },
         // { title: "isActive", data: "isActive" },
@@ -363,7 +351,15 @@ $(document).ready(function () {
     //     // $(this).val()=""
     // }         
   });
-  $('#example_filter1 input').bind('keydown', function (e) {
+  // $("select").on("click", "#start1", function () {
+  //   $(".filter1").show()
+  //   filter1();
+  // })
+  // $("select").on("click", "#end1", function () {
+  //   $(".filter1").show()
+  //   filter1();
+  // })
+  $('#example1_filter input').bind('keydown', function (e) {
     console.log('keydown');
     table1.search($("#example1_filter input").val()).draw();
     clearTimeout(typingTimer1);

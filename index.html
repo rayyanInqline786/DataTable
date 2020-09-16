@@ -46,7 +46,7 @@
 <body>
     <div class="dataTables_wrapper">
         <select name="cols" id="cols">
-            <option value="">--Select Column--</option>
+            <option value="" id="def">--Select Column--</option>
             <option value="Start Date" id="start">Start Date</option>
             <option value="End Date" id="end">End Date</option>
           </select>
@@ -59,7 +59,12 @@
     </table>
 </div>
 <div class="dataTables_wrapper">
-    <div class="filter">
+    <select name="cols1" id="cols1">
+        <option value="">--Select Column--</option>
+        <option value="Start Date" id="start1">Start Date</option>
+        <option value="End Date" id="end1">End Date</option>
+      </select>
+    <div class="filter1">
         From: <input type="date" id="txtMin1" />
         To: <input type="date" id="txtMax1" />
         <button id="btnGo1" type="button">Go</button>

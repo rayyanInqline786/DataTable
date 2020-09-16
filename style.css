@@ -20,12 +20,19 @@ a.buttons-collection {
 margin-bottom: 30px !important;
 display: none;
 }
+.filter1{
+    margin-bottom: 30px !important;
+    display: none;
+}
+#btnGo,#btnGo1{
+    margin-top: 20px;
+}
 @media (max-width:1200px){
-    .filter{
+    /* .filter{
         display: inline-flex;
         flex-direction: column;
         justify-content: space-between;
-    }
+    } */
     #btnGo,#btnGo1{
         margin-top: 10px;
     }
