@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.2/css/colReorder.dataTables.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
@@ -16,7 +17,8 @@
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css"> -->
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.3/css/buttons.dataTables.min.css">
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.3.1/css/fixedColumns.bootstrap.min.css"> -->
-    <link rel="stylesheet" href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css">
+    <link rel="stylesheet"
+        href="https://datatables.net/release-datatables/extensions/FixedColumns/css/fixedColumns.bootstrap4.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/scroller/2.0.2/css/scroller.dataTables.min.css">
     <link rel="stylesheet" href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
@@ -27,49 +29,52 @@
     <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <!-- <script src="https://cdn.datatables.net/fixedcolumns/3.3.1/js/dataTables.fixedColumns.min.js"></script> -->
-<script src="https://datatables.net/release-datatables/extensions/FixedColumns/js/dataTables.fixedColumns.js"></script>
-<script src="https://cdn.datatables.net/scroller/2.0.2/js/dataTables.scroller.min.js"></script>
-<script src="https://cdn.datatables.net/colreorder/1.5.2/js/dataTables.colReorder.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.3/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.3/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.3/js/buttons.print.min.js"></script>
-<script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>
-<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+    <script
+        src="https://datatables.net/release-datatables/extensions/FixedColumns/js/dataTables.fixedColumns.js"></script>
+    <script src="https://cdn.datatables.net/scroller/2.0.2/js/dataTables.scroller.min.js"></script>
+    <script src="https://cdn.datatables.net/colreorder/1.5.2/js/dataTables.colReorder.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.3/js/buttons.print.min.js"></script>
+    <script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
     <script src="app.js"></script>
 </head>
+
 <body>
     <div class="dataTables_wrapper">
         <select name="cols" id="cols">
             <option value="" id="def">--Select Column--</option>
             <option value="Start Date" id="start">Start Date</option>
             <option value="End Date" id="end">End Date</option>
-          </select>
+        </select>
         <div class="filter">
-        From: <input type="date" id="txtMin" />
-        To: <input type="date" id="txtMax" />
-        <button id="btnGo" type="button">Go</button>
+            From: <input type="date" id="txtMin" />
+            To: <input type="date" id="txtMax" />
+            <button id="btnGo" type="button">Go</button>
+        </div>
+        <table id="example" class="display" style="width:100%">
+        </table>
     </div>
-    <table id="example" class="display" style="width:100%">
-    </table>
-</div>
-<div class="dataTables_wrapper">
-    <select name="cols1" id="cols1">
-        <option value="">--Select Column--</option>
-        <option value="Start Date" id="start1">Start Date</option>
-        <option value="End Date" id="end1">End Date</option>
-      </select>
-    <div class="filter1">
-        From: <input type="date" id="txtMin1" />
-        To: <input type="date" id="txtMax1" />
-        <button id="btnGo1" type="button">Go</button>
+    <div class="dataTables_wrapper">
+        <select name="cols1" id="cols1">
+            <option value="">--Select Column--</option>
+            <option value="Start Date" id="start1">Start Date</option>
+            <option value="End Date" id="end1">End Date</option>
+        </select>
+        <div class="filter1">
+            From: <input type="date" id="txtMin1" />
+            To: <input type="date" id="txtMax1" />
+            <button id="btnGo1" type="button">Go</button>
+        </div>
+        <table id="example1" class="display1 table-striped table-hover" style="width:100%"></table>
     </div>
-    <table id="example1" class="display1 table-striped table-hover" style="width:100%"></table>
-</div>
 </body>
+
 </html>
