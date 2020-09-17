@@ -1,63 +1,65 @@
 $(document).ready(function () {
-  function filter(){
-  $.fn.dataTable.ext.search.push(
-    function (settings, data, dataIndex) {
 
-
-      var valid = true;
-      var min = moment($("#txtMin").val());
-      if (!min.isValid()) { min = null; }
-
-      var max = moment($("#txtMax").val());
-      if (!max.isValid()) { max = null; }
-
-      if (min === null && max === null) {
-        // no filter applied or no date columns
-        valid = true;
-      }
-      else {
-
-        $.each(settings.aoColumns, function (i, col) {
-
-          if (col.type == "startDate") {
-            var cDate = moment(data[i]);
-            if (cDate.isValid()) {
-              if (max !== null && max.isBefore(cDate)) {
-                valid = false;
-              }
-              if (min !== null && cDate.isBefore(min)) {
-                valid = false;
-              }
-            }
-            else {
-              valid = false;
-            }
-          }
-        });
-      }
-      return valid;
-    });
-  }
-  function filterEnd(){
+  // functions for date range filter
+  function filter() {
     $.fn.dataTable.ext.search.push(
       function (settings, data, dataIndex) {
-  
-  
+
+
         var valid = true;
         var min = moment($("#txtMin").val());
         if (!min.isValid()) { min = null; }
-  
+
         var max = moment($("#txtMax").val());
         if (!max.isValid()) { max = null; }
-  
+
         if (min === null && max === null) {
           // no filter applied or no date columns
           valid = true;
         }
         else {
-  
+
           $.each(settings.aoColumns, function (i, col) {
-  
+
+            if (col.type == "startDate") {
+              var cDate = moment(data[i]);
+              if (cDate.isValid()) {
+                if (max !== null && max.isBefore(cDate)) {
+                  valid = false;
+                }
+                if (min !== null && cDate.isBefore(min)) {
+                  valid = false;
+                }
+              }
+              else {
+                valid = false;
+              }
+            }
+          });
+        }
+        return valid;
+      });
+  }
+  function filterEnd() {
+    $.fn.dataTable.ext.search.push(
+      function (settings, data, dataIndex) {
+
+
+        var valid = true;
+        var min = moment($("#txtMin").val());
+        if (!min.isValid()) { min = null; }
+
+        var max = moment($("#txtMax").val());
+        if (!max.isValid()) { max = null; }
+
+        if (min === null && max === null) {
+          // no filter applied or no date columns
+          valid = true;
+        }
+        else {
+
+          $.each(settings.aoColumns, function (i, col) {
+
             if (col.type == "endDate") {
               var cDate = moment(data[i]);
               if (cDate.isValid()) {
@@ -76,58 +78,106 @@ $(document).ready(function () {
         }
         return valid;
       });
+  }
+  function filterStart1() {
+    $.fn.dataTable.ext.search.push(
+      function (settings, data, dataIndex) {
+
+
+        var valid = true;
+        var min = moment($("#txtMin1").val());
+        if (!min.isValid()) { min = null; }
+
+        var max = moment($("#txtMax1").val());
+        if (!max.isValid()) { max = null; }
+
+        if (min === null && max === null) {
+          // no filter applied or no date columns
+          valid = true;
+        }
+        else {
+
+          $.each(settings.aoColumns, function (i, col) {
+
+            if (col.type == "startDate") {
+              7
+              var cDate = moment(data[i]);
+
+              if (cDate.isValid()) {
+                if (max !== null && max.isBefore(cDate)) {
+                  valid = false;
+                }
+                if (min !== null && cDate.isBefore(min)) {
+                  valid = false;
+                }
+              }
+              else {
+                valid = false;
+              }
+            }
+          });
+        }
+        return valid;
+      });
+  }
+  function filterEnd1() {
+    $.fn.dataTable.ext.search.push(
+      function (settings, data, dataIndex) {
+
+
+        var valid = true;
+        var min = moment($("#txtMin1").val());
+        if (!min.isValid()) { min = null; }
+
+        var max = moment($("#txtMax1").val());
+        if (!max.isValid()) { max = null; }
+
+        if (min === null && max === null) {
+          // no filter applied or no date columns
+          valid = true;
+        }
+        else {
+
+          $.each(settings.aoColumns, function (i, col) {
+
+            if (col.type == "endDate") {
+              7
+              var cDate = moment(data[i]);
+
+              if (cDate.isValid()) {
+                if (max !== null && max.isBefore(cDate)) {
+                  valid = false;
+                }
+                if (min !== null && cDate.isBefore(min)) {
+                  valid = false;
+                }
+              }
+              else {
+                valid = false;
+              }
+            }
+          });
+        }
+        return valid;
+      });
+  }
+
+  //Dropdown for selecting columns
+  $("#cols").on("change", function () {
+    var status = this.value;
+    if (status == "Start Date") {
+      $(".filter").show()
+      $(".filter").addClass("set")
+      filter();
     }
-  // function filter1(){
-  // $.fn.dataTable.ext.search.push(
-  //   function (settings, data, dataIndex) {
-
-
-  //     var valid = true;
-  //     var min = moment($("#txtMin1").val());
-  //     if (!min.isValid()) { min = null; }
-
-  //     var max = moment($("#txtMax1").val());
-  //     if (!max.isValid()) { max = null; }
-
-  //     if (min === null && max === null) {
-  //       // no filter applied or no date columns
-  //       valid = true;
-  //     }
-  //     else {
-
-  //       $.each(settings.aoColumns, function (i, col) {
-
-  //         if (col.type == "startDate" || col.type == "endDate") {7
-  //           var cDate = moment(data[i]);
-
-  //           if (cDate.isValid()) {
-  //             if (max !== null && max.isBefore(cDate)) {
-  //               valid = false;
-  //             }
-  //             if (min !== null && cDate.isBefore(min)) {
-  //               valid = false;
-  //             }
-  //           }
-  //           else {
-  //             valid = false;
-  //           }
-  //         }
-  //       });
-  //     }
-  //     return valid;
-  //   });
-  // }
-  $("select").on("click", "#start", function () {
-    $(".filter").show()
-    filter();
+    else {
+      $(".filter").show()
+      $(".filter").addClass("set")
+      filterEnd();
+    }
   })
-  $("select").on("click", "#end", function () {
-    $(".filter").show()
-    filterEnd();
-  })
-  $("select").on("click", "#def", function () {
-    $(".filter").hide()
-   })
+  
+  // perform daterange filter
   $("#btnGo").click(function () {
     $('#example').DataTable().draw();
   });
@@ -135,6 +185,8 @@ $(document).ready(function () {
     console.log("working...")
     $('#example1').DataTable().draw();
   });
+
+  // Initialising Datatable
   initialiseTable();
   initialiseTable1();
   var table;
@@ -198,16 +250,12 @@ $(document).ready(function () {
         { title: "ID", data: "_id" },
         { title: "Name", data: "name" },
         { title: "age", data: "age" },
-        // { title: "isActive", data:"isActive" },
-        // { title: "eyeColor", data:"eyeColor" },
         { title: "gender", data: "gender" },
         { title: "company", data: "company" },
         { title: "StartDate", data: "startDate", type: "startDate" },
         { title: "EndDate", data: "endDate", type: "endDate" },
         { title: "email", data: "email" },
         { title: "phone", data: "phone" },
-        // { title: "balance", data:"balance" },
-        // { title: "address", data:"address" },
         {
           title: "Action", data: null, render: function (data, type, row) {
             return '<button class="btn btn-danger" style="width:40px"><i class="fa fa-trash" id="delete" style="font-size:18px; color:white" aria-hidden="true"></i></button> <button class="btn btn-info" style="width:40px"><i class="fa fa-strikethrough" id="disable" style="font-size:18px; color:white" aria-hidden="true"></i></button>'
@@ -217,6 +265,7 @@ $(document).ready(function () {
 
     });
   }
+  // perform search after 3 secs after user stopped typing
   var typingTimer;
   var doneTypingInterval = 3000;
   $('#example_filter input').unbind();
@@ -224,15 +273,7 @@ $(document).ready(function () {
     console.log('keyup');
     clearTimeout(typingTimer);
     console.log('run function in 3 seconds');
-    typingTimer = setTimeout(doneTyping, doneTypingInterval);
-    //   if (this.value.length >= 3 || e.keyCode == 13) {
-    //       table.search($(this).val()).draw();
-    //       // $(this).val()=""
-    //   }
-    //   if (e.keyCode == 8) {
-    //     table.search($(this).val()).draw();
-    //     // $(this).val()=""
-    // }         
+    typingTimer = setTimeout(doneTyping, doneTypingInterval);         
   });
   $('#example_filter input').bind('keydown', function (e) {
     console.log('keydown');
@@ -243,6 +284,7 @@ $(document).ready(function () {
     console.log('make call')
     table.search($("#example_filter input").val()).draw();
   }
+  // Delete Button
   $(document).on("click", "#delete", function () {
     var row;
     if ($(this).closest('table').hasClass("collapsed")) {
@@ -254,6 +296,8 @@ $(document).ready(function () {
 
     table.row(row).remove().draw();
   })
+
+  //Text strike button
   $('table.display tbody').on("click", "#disable", function () {
     $(this).closest('tr').toggleClass("strike")
   })
@@ -322,10 +366,6 @@ $(document).ready(function () {
         { title: "EndDate", data: "endDate", type: "endDate" },
         { title: "email", data: "email" },
         { title: "phone", data: "phone" },
-        // { title: "isActive", data: "isActive" },
-        // { title: "eyeColor", data: "eyeColor" },
-        //  { title: "address", data:"address" },
-        //  { title: "balance", data:"balance" },
         {
           title: "Action", data: null, render: function (data, type, row) {
             return '<button class="btn btn-danger" style="width:40px"><i class="fa fa-trash" id="delete1" style="font-size:18px; color:white" aria-hidden="true"></i></button> <button class="btn btn-info" style="width:40px"><i class="fa fa-strikethrough" id="disable1" style="font-size:18px; color:white" aria-hidden="true"></i></button>'
@@ -342,23 +382,8 @@ $(document).ready(function () {
     clearTimeout(typingTimer1);
     console.log('run function in 3 seconds');
     typingTimer1 = setTimeout(doneTyping1, doneTypingInterval1);
-    //   if (this.value.length >= 3 || e.keyCode == 13) {
-    //       table.search($(this).val()).draw();
-    //       // $(this).val()=""
-    //   }
-    //   if (e.keyCode == 8) {
-    //     table.search($(this).val()).draw();
-    //     // $(this).val()=""
-    // }         
   });
-  // $("select").on("click", "#start1", function () {
-  //   $(".filter1").show()
-  //   filter1();
-  // })
-  // $("select").on("click", "#end1", function () {
-  //   $(".filter1").show()
-  //   filter1();
-  // })
+
   $('#example1_filter input').bind('keydown', function (e) {
     console.log('keydown');
     table1.search($("#example1_filter input").val()).draw();
@@ -368,6 +393,19 @@ $(document).ready(function () {
     console.log('make call')
     table1.search($("#example1_filter input").val()).draw();
   }
+  $("#cols1").on("change", function () {
+    var status = this.value;
+    if (status == "Start Date") {
+      $(".filter1").show()
+      $(".filter1").addClass("set")
+      filterStart1();
+    }
+    else {
+      $(".filter1").show()
+      $(".filter1").addClass("set")
+      filterEnd1();
+    }
+  })
   $(document).on("click", "#delete1", function () {
     var row;
     if ($(this).closest('table').hasClass("collapsed")) {

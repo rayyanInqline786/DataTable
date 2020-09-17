@@ -28,11 +28,11 @@ display: none;
     margin-top: 20px;
 }
 @media (max-width:1200px){
-    /* .filter{
+    .set{
         display: inline-flex;
         flex-direction: column;
         justify-content: space-between;
-    } */
+    }
     #btnGo,#btnGo1{
         margin-top: 10px;
     }
